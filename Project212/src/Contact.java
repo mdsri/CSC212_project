@@ -1,4 +1,4 @@
-
+// implements Comparable 
 public class Contact {
 
 	String name;
