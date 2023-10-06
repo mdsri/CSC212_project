@@ -1,6 +1,6 @@
 
 public class test {
-//
+
 	public static void main(String[] args) {
 		
 		System.out.println("Test number 1");
@@ -10,6 +10,7 @@ public class test {
 		System.out.println("abdul was here");
 
 		System.out.println("Today");
+		
 
 	}
 

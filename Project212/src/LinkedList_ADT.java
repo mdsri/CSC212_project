@@ -10,3 +10,4 @@ public class LinkedList_ADT <T>{
 	
 	
 }
+
