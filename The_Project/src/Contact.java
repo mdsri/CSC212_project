@@ -16,7 +16,31 @@ public class Contact {
 		this.birthday = birthday;
 		this.notes = notes;
 	}
+
+	public String getName() {
+		return name;
+	}
+
+	public int getPhnumber() {
+		return Phnumber;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public String getBirthday() {
+		return birthday;
+	}
+
+	public String getNotes() {
+		return notes;
+	}
 	
-	
+	public boolean 
 
 }
