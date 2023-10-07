@@ -1,7 +1,7 @@
 
 public class Node<T> {
 
-	public T data;
+	public Contact data;
 	public Node<T> next;
 	public Node<T> previous;
 
@@ -11,17 +11,17 @@ public class Node<T> {
 		previous = null;
 	}
 
-	public Node(T val) {
+	public Node(Contact val) {
 		data = val;
 		next = null;
 		previous = null;
 	}
 
-	public T getData() {
+	public Contact getData() {
 		return data;
 	}
 
-	public void setData(T data) {
+	public void setData(Contact data) {
 		this.data = data;
 	}
 
