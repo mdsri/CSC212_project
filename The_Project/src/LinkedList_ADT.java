@@ -9,13 +9,17 @@ public class LinkedList_ADT<Contact> {
 		head = current = null;
 	}
 
+	public boolean isEmpty() {
+		return head == null;
+	}
+
 	public void addContact(Contact contact) {
 		Node<Contact> temp = new Node<Contact>();
-		
+
 		if (head == null) {
 			current = head = temp;
 		}
-			//where current?
+		// where current?
 		if (checkAvail(contact))
 			System.out.println("Contact already added in the Phonebook");
 		else {
@@ -28,17 +32,30 @@ public class LinkedList_ADT<Contact> {
 		}
 
 	}
-	
-	public boolean checkAvail (Contact contact) {
-		Node<Contact> temp = new Node<Contact>();
+
+	// this whole method needs revision , slides lecture09 page 172
+	public boolean checkAvail(Contact contact) {
+		Node<Contact> temp = new Node<Contact>(); // i think it should be [ Node<Contact> temp = current ]
 		current = head;
-		while(current != null) {
+
+		if (isEmpty()) { // if the list is empty
+			return false;
+		}
+
+		if (current.next == null && current.data.getName().equalsIgnoreCase(temp.data.getName()) // if only one contact in the list
+				|| current.data.getphNumber() == temp.data.getphNumber()) {
+
+			return true;
+		}
+
+		do { // do while for the linked list has only one contact. or isEmpty()
 			if (current.data.getName().equalsIgnoreCase(temp.data.getName())
-					|| current.data.getPhnumber() == temp.data.getPhnumber())
+					|| current.data.getphNumber() == temp.data.getphNumber())
 				return true;
 			else
 				current = current.next;
-		}
+		} while (current.next != null);
+
 		return false;
 	}
 

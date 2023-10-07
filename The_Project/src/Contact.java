@@ -2,16 +2,16 @@
 public class Contact {
 
 	private String name;
-	private int Phnumber; // int easier for us compared to string
+	private int phNumber; // int easier for us compared to string
 	private String email;
 	private String address;
 	private String birthday;
 	private String notes;
 	
 								
-	public Contact(String name, int Phnumber, String email, String address, String birthday, String notes) {
+	public Contact(String name, int phNumber, String email, String address, String birthday, String notes) {
 		this.name = name;
-		this.Phnumber = Phnumber;
+		this.phNumber = phNumber;
 		this.email = email;
 		this.address = address;
 		this.birthday = birthday;
@@ -22,8 +22,8 @@ public class Contact {
 		return name;
 	}
 
-	public int getPhnumber() {
-		return Phnumber;
+	public int getphNumber() {
+		return phNumber;
 	}
 
 	public String getEmail() {
