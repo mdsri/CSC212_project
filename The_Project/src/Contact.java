@@ -42,6 +42,6 @@ public class Contact {
 		return notes;
 	}
 	
-	public boolean 
+	// public boolean	we want to search 
 
 }

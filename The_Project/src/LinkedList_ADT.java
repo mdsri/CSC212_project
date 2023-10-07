@@ -15,9 +15,9 @@ public class LinkedList_ADT<Contact> {
 		if (head == null) {
 			current = head = temp;
 		}
-		if (head.data.getName().equalsIgnoreCase(temp.data.getName()) || head.data.getPhnumber() == temp.data.getPhnumber()) {
+			//where current?
+		if (checkAvail(contact))
 			System.out.println("Contact already added in the Phonebook");
-		}
 		else {
 			temp.next = current.next;
 			temp.previous = current;
@@ -28,18 +28,18 @@ public class LinkedList_ADT<Contact> {
 		}
 
 	}
-/*
-	public void searchNumber(int Name){
-		
-		Node<Contact> current = head;
-		
-		while(current != null) {
-			if(current.data.getName()  )
-		}
-		
-		
-	}
 	
-	*/
+	public boolean checkAvail (Contact contact) {
+		Node<Contact> temp = new Node<Contact>();
+		current = head;
+		while(current != null) {
+			if (current.data.getName().equalsIgnoreCase(temp.data.getName())
+					|| current.data.getPhnumber() == temp.data.getPhnumber())
+				return true;
+			else
+				current = current.next;
+		}
+		return false;
+	}
 
 }
