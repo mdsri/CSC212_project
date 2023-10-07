@@ -58,5 +58,6 @@ public class LinkedList_ADT<Contact> {
 
 		return false;
 	}
+	
 
 }
