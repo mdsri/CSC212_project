@@ -34,14 +34,7 @@ public class LinkedList_ADT<T extends Comparable<T>> {
 
 	}
 
-	@Override
-	public int compareTo(Node<T> o) {
-		if(current.data > o.data)
-			return 1;
-		else if(current.data < o.data)
-			return -1;
-		return 0;
-	}
+	
 
 	
 	
