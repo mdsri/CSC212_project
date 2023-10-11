@@ -1,9 +1,9 @@
 
-public class LinkedList_ADT<Contact> {
+public class LinkedList_ADT<T> {
 
-	private Node<Contact> head;
-	private Node<Contact> tail;
-	private Node<Contact> current;
+	private Node<T> head;
+	private Node<T> tail;
+	private Node<T> current;
 
 	public LinkedList_ADT() {
 		head = current = null;

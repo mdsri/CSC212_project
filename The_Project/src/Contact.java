@@ -1,5 +1,5 @@
 // implements Comparable 
-public class Contact {
+public class Contact implements Comparable<Contact>{
 
 	private String name;
 	private int phNumber; // int easier for us compared to string
@@ -41,7 +41,11 @@ public class Contact {
 	public String getNotes() {
 		return notes;
 	}
-	
-	// public boolean	we want to search 
 
+	@Override
+	public int compareTo(Contact o) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	
 }
