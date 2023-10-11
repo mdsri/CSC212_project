@@ -1,9 +1,10 @@
 
-public class LinkedList_ADT<T> {
+public class LinkedList_ADT<T extends Comparable<T>> {
 
 	private Node<T> head;
 	private Node<T> tail;
 	private Node<T> current;
+	
 
 	public LinkedList_ADT() {
 		head = current = null;
@@ -13,18 +14,18 @@ public class LinkedList_ADT<T> {
 		return head == null;
 	}
 
-	public void addContact(Contact contact) {
-		Node<Contact> temp = new Node<Contact>();
-
+	public void addContact(T contact) {
+		Node<T> temp = new Node<T>();
+		
 		if (head == null) {
-			current = head = temp;
+			current = head = (Node<T>) temp;
 		}
 		// where current?
 		if (checkAvail(contact))
 			System.out.println("Contact already added in the Phonebook");
 		else {
-			temp.next = current.next;
-			temp.previous = current;
+			temp.next = (Node<T>) current.next;
+			temp.previous = (Node<T>) current;
 			if (current.next != null)
 				current.next.previous = temp;
 			current.next = temp;
@@ -33,6 +34,18 @@ public class LinkedList_ADT<T> {
 
 	}
 
+	@Override
+	public int compareTo(Node<T> o) {
+		if(current.data > o.data)
+			return 1;
+		else if(current.data < o.data)
+			return -1;
+		return 0;
+	}
+
+	
+	
+	/*
 	// this whole method needs revision , slides lecture09 page 172
 	public boolean checkAvail(Contact contact) {
 		Node<Contact> temp = new Node<Contact>(); // i think it should be [ Node<Contact> temp = current ]
@@ -58,5 +71,6 @@ public class LinkedList_ADT<T> {
 
 		return false;
 	}
+	*/
 
 }
