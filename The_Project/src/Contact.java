@@ -42,9 +42,9 @@ public class Contact implements Comparable<Contact>{
 		return notes;
 	}
 
-	@Override
+	@Override 
 	public int compareTo(Contact o) {
-		// TODO Auto-generated method stub
+		
 		return 0;
 	}
 	
