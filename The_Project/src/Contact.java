@@ -1,5 +1,5 @@
 // implements Comparable 
-public class Contact implements Comparable<T>{
+public class Contact implements Comparable<Contact>{
 
 	private String name;
 	private int phNumber; // int easier for us compared to string
@@ -40,6 +40,13 @@ public class Contact implements Comparable<T>{
 
 	public String getNotes() {
 		return notes;
+	}
+
+	@Override
+	public int compareTo(Contact o) {
+		if(this.phNumber == o.phNumber)
+			return 0;
+		return this.name.compareToIgnoreCase(o.name);
 	}
 
 	
