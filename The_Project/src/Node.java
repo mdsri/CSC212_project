@@ -1,4 +1,4 @@
-
+//
 public class Node<T> {
 
 	public T data;

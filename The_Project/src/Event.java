@@ -8,7 +8,7 @@ public class Event {
 	//and the contact involved <-----
 	
 	// Note: نحتاج نربط كونتاكت بالايفنت ونقدر نفترض انه كل كونتاكت له ايفنت واحد
-	
+	//
 	
 	public String getTutle() {
 		return tutle;
