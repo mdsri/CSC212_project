@@ -1,62 +1,79 @@
-
+//
 public class LinkedList_ADT<T> {
 
-	private Node<T> head;
-	private Node<T> tail;
-	private Node<T> current;
+    private Node<T> head;
+    private Node<T> current;
 
-	public LinkedList_ADT() {
-		head = current = null;
-	}
+    public LinkedList_ADT() {
+        head = current = null;
+    }
 
-	public boolean isEmpty() {
-		return head == null;
-	}
+    public boolean isEmpty() {
+        return head == null;
+    }
 
-	public void addContact(Contact contact) {
-		Node<Contact> temp = new Node<Contact>();
+    public boolean last() {
+        return current.next == null;
+    }
 
-		if (head == null) {
-			current = head = temp;
-		}
-		// where current?
-		if (checkAvail(contact))
-			System.out.println("Contact already added in the Phonebook");
-		else {
-			temp.next = current.next;
-			temp.previous = current;
-			if (current.next != null)
-				current.next.previous = temp;
-			current.next = temp;
-			current = temp;
-		}
+    public boolean first() {
+        return current.previous == null;
+    }
 
-	}
+    public boolean full() {
+        return false;
+    }
 
-	// this whole method needs revision , slides lecture09 page 172
-	public boolean checkAvail(Contact contact) {
-		Node<Contact> temp = new Node<Contact>(); // i think it should be [ Node<Contact> temp = current ]
-		current = head;
+    public void findFirst() {
+        current = head;
+    }
 
-		if (isEmpty()) { // if the list is empty
-			return false;
-		}
+    public void findNext() {
+        current = current.next;
+    }
 
-		if (current.next == null && current.data.getName().equalsIgnoreCase(temp.data.getName()) // if only one contact in the list
-				|| current.data.getphNumber() == temp.data.getphNumber()) {
+    public void findPrevious() {
+        current = current.previous;
+    }
 
-			return true;
-		}
+    public T retrieve() {
+        return current.data;
+    }
 
-		do { // do while for the linked list has only one contact. or isEmpty()
-			if (current.data.getName().equalsIgnoreCase(temp.data.getName())
-					|| current.data.getphNumber() == temp.data.getphNumber())
-				return true;
-			else
-				current = current.next;
-		} while (current.next != null);
+    public void update(T val) {
+        current.data = val;
+    }
 
-		return false;
-	}
+    public void insert(T val) {
+        Node<T> temp = new Node<T>(val);
+        if(isEmpty()) {
+            current = head = temp;
+        }
+        else {
+            temp.next = current.next;
+            temp.previous = current;
+            if(current.next != null)
+                current.next.previous = temp;
+            current.next = temp;
+            current = temp;
+        }
+    }
+    
+    public void remove() {
+        if(current == head)
+            head = head.next;
+        else
+            current.previous.next = current.next;
+
+        if(current.next != null)
+            current.next.previous = current.previous;
+
+        if(current.next == null)
+            current = head;
+
+        else
+            current = current.next;
+    }
+
 
 }
