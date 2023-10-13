@@ -1,7 +1,7 @@
 // Not completed 
 public class Event {
 
-	private String tutle;
+	private String tutle;//
 	private String date;
 	private String time;
 	private String location;
