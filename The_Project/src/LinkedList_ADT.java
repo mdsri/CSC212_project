@@ -1,5 +1,5 @@
 
-public class LinkedList_ADT<T extends Comparable<T>> {
+public class LinkedList_ADT<T> {
 
 	private Node<T> head;
 	private Node<T> tail;
@@ -34,39 +34,5 @@ public class LinkedList_ADT<T extends Comparable<T>> {
 
 	}
 
-	int compareTo(T o) {
-		if(current.data > )
-	}
 	
-
-	
-	
-	/*
-	// this whole method needs revision , slides lecture09 page 172
-	public boolean checkAvail(Contact contact) {
-		Node<Contact> temp = new Node<Contact>(); // i think it should be [ Node<Contact> temp = current ]
-		current = head;
-
-		if (isEmpty()) { // if the list is empty
-			return false;
-		}
-
-		if (current.next == null && current.data.getName().equalsIgnoreCase(temp.data.getName()) // if only one contact in the list
-				|| current.data.getphNumber() == temp.data.getphNumber()) {
-
-			return true;
-		}
-
-		do { // do while for the linked list has only one contact. or isEmpty()
-			if (current.data.getName().equalsIgnoreCase(temp.data.getName())
-					|| current.data.getphNumber() == temp.data.getphNumber())
-				return true;
-			else
-				current = current.next;
-		} while (current.next != null);
-
-		return false;
-	}
-	*/
-
 }

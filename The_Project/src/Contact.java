@@ -1,5 +1,5 @@
 // implements Comparable 
-public class Contact implements Comparable<Contact>{
+public class Contact implements Comparable<T>{
 
 	private String name;
 	private int phNumber; // int easier for us compared to string
@@ -42,9 +42,5 @@ public class Contact implements Comparable<Contact>{
 		return notes;
 	}
 
-	@Override
-	public int compareTo(Contact o) {
-		return 0;
-	}
 	
 }
