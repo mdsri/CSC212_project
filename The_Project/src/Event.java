@@ -1,21 +1,21 @@
 // Not completed //
 public class Event {
 
-    private String tutle;
+    private String title;
     private String date;
-    private String time;
+    private String time;		//24H
     private String location;
     //and the contact involved <-----
     
     // Note: نحتاج نربط كونتاكت بالايفنت ونقدر نفترض انه كل كونتاكت له ايفنت واحد
     //
     
-    public String getTutle() {
-        return tutle;
+    public String getTitle() {
+        return title;
     }
     
-    public void setTutle(String tutle) {
-        this.tutle = tutle;
+    public void setTitle(String title) {
+        this.title = title;
     }
     public String getDate() {
         return date;
@@ -36,15 +36,13 @@ public class Event {
         this.location = location;
     }
     
-    
-    
-    // toString to print the information of the event 
-    
-    @Override
-    public String toString() {
-        return "Event [tutle=" + tutle + ", date=" + date + ", time=" + time + ", location=" + location + "]";
+    @Override		//don't forget to connect contact and no conflict
+    public String toString() { 
+        return "Event title: " + title +
+        		"\nEvent date and time (MM/DD/YYYY - HH:MM): " + date + " - " + time +
+        		"\nEvent location: " + location;
     }
     
-    
+    //public String printByName(), printByTitle() ?;
     
 }

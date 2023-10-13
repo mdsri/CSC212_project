@@ -1,4 +1,4 @@
-////
+
 public class LinkedList_ADT<T> {
 
     private Node<T> head;

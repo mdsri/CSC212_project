@@ -6,7 +6,7 @@ public class Contact implements Comparable<Contact>{
     private String address;
     private String birthday;
     private String notes;
-    //
+    
                                 
     public Contact(String name, int phNumber, String email, String address, String birthday, String notes) {
         this.name = name;
@@ -46,6 +46,15 @@ public class Contact implements Comparable<Contact>{
         if(this.phNumber == o.phNumber)
             return 0;
         return this.name.compareToIgnoreCase(o.name);
+    }
+    
+    public String toString() {
+    	return "Name:" + name + 
+    			"\nPhone number: " + phNumber +
+    			"\nEmail Address: " + email + 
+    			"\nAddress: " + address + 
+    			"\nBirthday: " + birthday + 
+    			"\nNotes: " + notes;
     }
 
     
