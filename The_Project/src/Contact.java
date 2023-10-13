@@ -49,5 +49,5 @@ public class Contact implements Comparable<Contact>{
 		return this.name.compareToIgnoreCase(o.name);
 	}
 
-	
+	//
 }

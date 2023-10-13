@@ -1,5 +1,5 @@
 // Not completed 
-public class Event {
+public class Event {//
 
 	private String tutle;
 	private String date;
