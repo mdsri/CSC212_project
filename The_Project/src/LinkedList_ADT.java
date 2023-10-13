@@ -34,6 +34,9 @@ public class LinkedList_ADT<T extends Comparable<T>> {
 
 	}
 
+	int compareTo(T o) {
+		if(current.data > )
+	}
 	
 
 	
