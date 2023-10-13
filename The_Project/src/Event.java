@@ -9,7 +9,7 @@ public class Event {
     
     // Note: نحتاج نربط كونتاكت بالايفنت ونقدر نفترض انه كل كونتاكت له ايفنت واحد
     //
-    
+    //
     public String getTutle() {
         return tutle;
     }

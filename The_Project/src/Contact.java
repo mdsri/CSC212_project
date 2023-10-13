@@ -7,7 +7,7 @@ public class Contact implements Comparable<Contact>{
     private String birthday;
     private String notes;
     
-                                
+       //                         
     public Contact(String name, int phNumber, String email, String address, String birthday, String notes) {
         this.name = name;
         this.phNumber = phNumber;

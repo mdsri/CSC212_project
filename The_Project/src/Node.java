@@ -24,7 +24,7 @@ public class Node<T> {
     public void setData(T data) {
         this.data = data;
     }
-
+//
     public Node<T> getNext() {
         return next;
     }

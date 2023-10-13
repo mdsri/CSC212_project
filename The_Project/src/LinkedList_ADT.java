@@ -58,7 +58,7 @@ public class LinkedList_ADT<T> {
             current = temp;
         }
     }
-    
+    //
     public void remove() {
         if(current == head)
             head = head.next;
