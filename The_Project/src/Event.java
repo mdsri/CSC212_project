@@ -1,4 +1,4 @@
-// Not completed 
+// Not completed //
 public class Event {
 
     private String tutle;

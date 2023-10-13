@@ -16,7 +16,7 @@ public class Node<T> {
         next = null;
         previous = null;
     }
-
+////
     public T getData() {
         return data;
     }
