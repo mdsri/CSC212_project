@@ -1,4 +1,3 @@
-//
 public class Node<T> {
 
 	public T data;
@@ -41,4 +40,4 @@ public class Node<T> {
 		this.previous = previous;
 	}
 
-}//
+}

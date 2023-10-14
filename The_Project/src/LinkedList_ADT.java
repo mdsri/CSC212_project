@@ -1,4 +1,3 @@
-//
 public class LinkedList_ADT<T> {
 
 	private Node<T> head;
@@ -58,7 +57,7 @@ public class LinkedList_ADT<T> {
 		}
 	}
 
-	public void insertAtfirst(T val) {
+	public void insertBeforeFirst(T val) {
 		Node<T> temp = new Node<T>(val);
 
 		temp.next = head;
@@ -85,7 +84,5 @@ public class LinkedList_ADT<T> {
 		else
 			current = current.next;
 	}
-	
-	// we need removeAtfirst also//
 
 }
