@@ -48,6 +48,6 @@ public class Event {
 				+ "\nEvent location: " + location;
 	}
 
-	// public String printByName(), printByTitle()//
+	// public String printByName(), printByTitle()////
 
 }

@@ -50,6 +50,6 @@ public class Contact implements Comparable<Contact> {
 	public String toString() {
 		return "Name:" + name + "\nPhone number: " + phNumber + "\nEmail Address: " + email + "\nAddress: " + address
 				+ "\nBirthday: " + birthday + "\nNotes: " + notes;
-	}//
+	}////
 
 }

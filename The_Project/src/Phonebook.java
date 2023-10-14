@@ -38,7 +38,7 @@ public class Phonebook {//
 			else
 				Contacts.findNext();
 
-		} while (Contacts.last() != true); // is it (contacts.last() != true) or only (contacts.last())???
+		} while (!Contacts.last());
 
 		return false;
 	}
@@ -60,7 +60,7 @@ public class Phonebook {//
 					Contacts.findNext();
 				}
 
-			} while (Contacts.last() != true);// is it (contacts.last() != true) or only (contacts.last())???
+			} while (!Contacts.last());
 		}
 		System.out.println("Contact not in the Phonebook");
 

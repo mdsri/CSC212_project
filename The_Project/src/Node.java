@@ -41,4 +41,4 @@ public class Node<T> {
 		this.previous = previous;
 	}
 
-}
+}//

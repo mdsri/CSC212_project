@@ -86,6 +86,6 @@ public class LinkedList_ADT<T> {
 			current = current.next;
 	}
 	
-	// we need removeAtfirst also
+	// we need removeAtfirst also//
 
 }
