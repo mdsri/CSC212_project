@@ -1,10 +1,11 @@
 // Not completed //
-public class Event {
+public class Event implements Comparable<Event>{
 
 	private String title;
 	private String date;
 	private String time; // 24H
 	private String location;
+	//private String contactName;
 	// and the contact involved <-----
 
 	// Note: نحتاج نربط كونتاكت بالايفنت ونقدر نفترض انه كل كونتاكت له ايفنت واحد
@@ -47,6 +48,13 @@ public class Event {
 		return "Event title: " + title + "\nEvent date and time (MM/DD/YYYY - HH:MM): " + date + " - " + time
 				+ "\nEvent location: " + location;
 	}
+
+	@Override
+	public int compareTo(Event o) {
+		return this.title.compareToIgnoreCase(o.title);
+	}
+
+	
 
 	// public String printByName(), printByTitle()////ظ
 
