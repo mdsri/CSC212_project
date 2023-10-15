@@ -58,30 +58,30 @@ public class Contact implements Comparable<Contact> {
 	}
 	
 	public boolean checkAndSort(Event e) {	// T not found - F found
-		if (events.retrieve().compareTo(e) == 0)		//no same title
-			return false;
-		while(!events.last()){
+		if (events.retrieve().noConflict(e))		//maybe last		it's ok same name
+			return true;
+		while(events.retrieve().noConflict(e) && !events.last()){
 			events.findNext();
-			if (events.retrieve().compareTo(e) == 0)	//comp1
-				return false;
-			else if(events.retrieve().compareTo(e) > 0) {	//comp2
+			/* if (events.retrieve().compareTo(e) == 0)	//comp1
+				return false; */
+			if(events.retrieve().compareTo(e) >= 0 && events.retrieve().noConflict(e)) {	//comp2
 				events.findPrevious();
 				return true;
 			}
 		}
-		return true;
+		return false;
 	}
 
-	public boolean addEvent(Event c) {
-		if (events.isEmpty()) //comp2
-			events.insert(c);
+	public boolean addEvent(Event e) {
+		if (events.isEmpty()) 
+			events.insert(e);
 		
 		events.findFirst();
-		if(events.retrieve().compareTo(c) > 0)
-			events.insertBeforeFirst(c);		//assume in add
+		if(events.retrieve().compareTo(e) > 0 && events.retrieve().noConflict(e))
+			events.insertBeforeFirst(e);		//before
 		
-		if(checkAndSort(c)) {
-			events.insert(c);
+		if(checkAndSort(e)) {
+			events.insert(e);
 			return true;
 		}	
 		return false;
@@ -92,39 +92,41 @@ public class Contact implements Comparable<Contact> {
 			System.out.println("No Events");
 		events.findFirst();
 		if(events.retrieve().getTitle().equalsIgnoreCase(title)) {
-			System.out.println("Event found!"+"\nContact name: "+ this.name);
-			events.retrieve().toString();
-			return;
-		}
-		while(!events.last()) {
-			events.findFirst();
-			if(events.retrieve().getTitle().equalsIgnoreCase(title)) {
-				System.out.println("Event found!"+"\nContact name: "+ this.name);
-				events.retrieve().toString();
-				return;
+			System.out.println("Events found!"
+					+"\nContact name: "+ this.name
+					+"\n" + events.retrieve().toString());
+
+			while(!events.last()) {
+				events.findNext();
+				if(events.retrieve().getTitle().equalsIgnoreCase(title))
+					System.out.println("\n" + events.retrieve().toString());
 			}
 		}
-		System.out.println("No Events");
+	}
+
+	public void printAll() {
+		if(events.isEmpty())
+			System.out.println("No Events");
+		events.findFirst();
+		System.out.println("Contact name: "+ this.name
+							+"\n" + events.retrieve().toString());
+		while(!events.last()) {
+			events.findNext();
+			System.out.println("\n" + events.retrieve().toString());
+		}
 	}
 	
+	/*
 	public void printByName(String n) {
 		if(events.isEmpty())
 			System.out.println("No Events");
 		events.findFirst();
-		if(events.retrieve().getTitle().equalsIgnoreCase(title)) {
-			System.out.println("Event found!"+"\nContact name: "+ this.name);
-			events.retrieve().toString();
-			return;
-		}
-		while(!events.last()) {
-			events.findFirst();
-			if(events.retrieve().getTitle().equalsIgnoreCase(title)) {
-				System.out.println("Event found!"+"\nContact name: "+ this.name);
-				events.retrieve().toString();
-				return;
-			}
-		}
-		System.out.println("No Events");
+		System.out.println("Event found!"+"\nContact name: " + this.name);
+		do {
+			System.out.println("\n" + events.retrieve().toString());
+			events.findNext();
+		}while(!events.last());
 	}
+	*/
 
 }

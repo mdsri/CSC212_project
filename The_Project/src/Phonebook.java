@@ -35,8 +35,23 @@ public class Phonebook {
 	}
 	*/
 	
-	public boolean checkAndSort(Contact c) {	// T not found - F found
-		if (Contacts.retrieve().compareTo(c) == 0 || Contacts.retrieve().EqNum(c))		//comp1
+	public boolean checkAndSortC(Contact c) {	// T not found - F found
+		if (Contacts.retrieve().compareTo(c) == 0 || Contacts.retrieve().EqNum(c))		//قدامه الحين
+			return false;
+		while(!Contacts.last()){
+			Contacts.findNext();
+			if (Contacts.retrieve().compareTo(c) == 0 || Contacts.retrieve().EqNum(c))	//comp1
+				return false;
+			else if(Contacts.retrieve().compareTo(c) > 0 && !(Contacts.retrieve().EqNum(c))) {	//comp2
+				Contacts.findPrevious();
+				return true;
+			}
+		}
+		return true;
+	}
+	
+	public boolean checkAndSortN(Contact c) {	// T not found - F found
+		if (Contacts.retrieve().compareTo(c) == 0 || Contacts.retrieve().EqNum(c))		//قدامه الحين
 			return false;
 		while(!Contacts.last()){
 			Contacts.findNext();
@@ -55,15 +70,19 @@ public class Phonebook {
 			Contacts.insert(c);
 		
 		Contacts.findFirst();
-		if(Contacts.retrieve().compareTo(c) > 0 && !(Contacts.retrieve().EqNum(c)))
+		if(Contacts.retrieve().compareTo(c) > 0 && !(Contacts.retrieve().EqNum(c)))	//وراه
 			Contacts.insertBeforeFirst(c);		//assume in add
 		
-		if(checkAndSort(c)) {
+		if(checkAndSortC(c)) {
 			Contacts.insert(c);
 			return true;
 		}	
 		return false;
 	}
+	
+	//public boolean scheduleEvent(String name) {
+		
+	//}
 
 	public boolean searchByName(String n) {
 		if (Contacts.isEmpty())

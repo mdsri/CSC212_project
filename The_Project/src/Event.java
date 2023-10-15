@@ -45,7 +45,7 @@ public class Event implements Comparable<Event>{
 
 	@Override // don't forget to connect contact and no conflict
 	public String toString() {
-		return "Event title: " + title + "\nEvent date and time (MM/DD/YYYY - HH:MM): " + date + " - " + time
+		return "Event title: " + title + "\nEvent date and time (DD/MM/YYYY - HH:MM): " + date + " - " + time
 				+ "\nEvent location: " + location;
 	}
 
@@ -54,7 +54,12 @@ public class Event implements Comparable<Event>{
 		return this.title.compareToIgnoreCase(o.title);
 	}
 
-	
+	public boolean noConflict(Event o) {
+		if(date.substring(0, 2).equalsIgnoreCase(o.date.substring(0, 2)) 
+				&& time.substring(0, 2).equalsIgnoreCase(o.time.substring(0, 2)))
+			return false;
+		return true;
+	}
 
 	// public String printByName(), printByTitle()////ظ
 
