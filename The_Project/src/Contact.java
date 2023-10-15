@@ -8,7 +8,6 @@ public class Contact implements Comparable<Contact> {
 	private String notes;
 	private LinkedList_ADT<Event> events;
 	
-	/*
 	public Contact(String name, int phNumber, String email, String address, String birthday, String notes) {
 		this.name = name;
 		this.phNumber = phNumber;
@@ -17,7 +16,7 @@ public class Contact implements Comparable<Contact> {
 		this.birthday = birthday;
 		this.notes = notes;
 	}
-	*/
+	
 
 	public String getName() {
 		return name;

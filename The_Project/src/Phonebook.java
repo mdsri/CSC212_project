@@ -228,8 +228,8 @@ public class Phonebook {
 		return false;
 	}
 	
-	public void display() {
-		System.out.println(contacts.toString());
+	public void displayForSearch() {
+		System.out.println("Contact found!\n" + contacts.toString());
 	}
 	
 
