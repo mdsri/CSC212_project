@@ -3,14 +3,13 @@ public class test {
 
 	public static void main(String[] args) {
 		
-		String A = "2003/07/06", B = "2003/07/06";
-		String time = "12:30";
+		String A = "Mohammed", B = "Mohammed Ali";
 		
-		Phonebook e = new Phonebook();
+		System.out.println(B.substring(0, A.length()).equalsIgnoreCase(A));
 		
 		
-		System.out.println(A.length());
-		System.out.println(time.substring(3,5));
+		//System.out.println(A.length());
+		//System.out.println(time.substring(3,5));
 
 	}
 

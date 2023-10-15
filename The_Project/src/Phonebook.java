@@ -1,33 +1,33 @@
 public class Phonebook {
 
-	private LinkedList_ADT<Contact> Contacts;
+	private LinkedList_ADT<Contact> contacts;
 	
 	public Phonebook() {
-		Contacts = null;
+		contacts = null;
 	}
 	
 	/*
 	public void sortAdd(Contact c) {
-		Contacts.findFirst();
+		contacts.findFirst();
 		do {
-			if (Contacts.last()) // add after front if in first time true
+			if (contacts.last()) // add after front if in first time true
 				return;
-			Contacts.findNext();
-		} while (Contacts.retrieve().getName().compareToIgnoreCase(c.getName()) < 0);
+			contacts.findNext();
+		} while (contacts.retrieve().getName().compareToIgnoreCase(c.getName()) < 0);
 	}
 
 	public boolean check(Contact c) { // True if found so don't add
-		Contacts.findFirst();
+		contacts.findFirst();
 		
 		// To check first one and maybe last
-		if (Contacts.retrieve().getName().equalsIgnoreCase(c.getName())
-				|| Contacts.retrieve().getphNumber() == c.getphNumber())
+		if (contacts.retrieve().getName().equalsIgnoreCase(c.getName())
+				|| contacts.retrieve().getphNumber() == c.getphNumber())
 			return true;
 
-		while (!Contacts.last()) {
-			Contacts.findNext();
-			if (Contacts.retrieve().getName().equalsIgnoreCase(c.getName())
-					|| Contacts.retrieve().getphNumber() == c.getphNumber())
+		while (!contacts.last()) {
+			contacts.findNext();
+			if (contacts.retrieve().getName().equalsIgnoreCase(c.getName())
+					|| contacts.retrieve().getphNumber() == c.getphNumber())
 				return true;
 		}
 
@@ -35,148 +35,175 @@ public class Phonebook {
 	}
 	*/
 	
-	public boolean checkAndSortC(Contact c) {	// T not found - F found
-		if (Contacts.retrieve().compareTo(c) == 0 || Contacts.retrieve().EqNum(c))		//قدامه الحين
+	public boolean checkAndSort(Contact c) {	// T not found - F found
+		if (contacts.retrieve().compareTo(c) == 0 || contacts.retrieve().EqNum(c))		//قدامه الحين
 			return false;
-		while(!Contacts.last()){
-			Contacts.findNext();
-			if (Contacts.retrieve().compareTo(c) == 0 || Contacts.retrieve().EqNum(c))	//comp1
+		while(!contacts.last()){
+			contacts.findNext();
+			if (contacts.retrieve().compareTo(c) == 0 || contacts.retrieve().EqNum(c))	//comp1
 				return false;
-			else if(Contacts.retrieve().compareTo(c) > 0 && !(Contacts.retrieve().EqNum(c))) {	//comp2
-				Contacts.findPrevious();
+			else if(contacts.retrieve().compareTo(c) > 0 && !(contacts.retrieve().EqNum(c))) {	//comp2
+				contacts.findPrevious();
 				return true;
 			}
 		}
 		return true;
 	}
 	
-	public boolean checkAndSortN(Contact c) {	// T not found - F found
-		if (Contacts.retrieve().compareTo(c) == 0 || Contacts.retrieve().EqNum(c))		//قدامه الحين
+	public boolean checkName(String n) {	// T found - F not found
+		if(contacts.isEmpty())
 			return false;
-		while(!Contacts.last()){
-			Contacts.findNext();
-			if (Contacts.retrieve().compareTo(c) == 0 || Contacts.retrieve().EqNum(c))	//comp1
-				return false;
-			else if(Contacts.retrieve().compareTo(c) > 0 && !(Contacts.retrieve().EqNum(c))) {	//comp2
-				Contacts.findPrevious();
+		contacts.findFirst();
+		if (contacts.retrieve().getName().equalsIgnoreCase(n))
+			return true;
+		while(contacts.last()) {
+			contacts.findFirst();
+			if (contacts.retrieve().getName().equalsIgnoreCase(n))
 				return true;
-			}
 		}
-		return true;
+		return false;
 	}
 
 	public boolean addContact(Contact c) {
-		if (Contacts.isEmpty()) //comp2
-			Contacts.insert(c);
+		if (contacts.isEmpty()) //comp2
+			contacts.insert(c);
 		
-		Contacts.findFirst();
-		if(Contacts.retrieve().compareTo(c) > 0 && !(Contacts.retrieve().EqNum(c)))	//وراه
-			Contacts.insertBeforeFirst(c);		//assume in add
+		contacts.findFirst();
+		if(contacts.retrieve().compareTo(c) > 0 && !(contacts.retrieve().EqNum(c)))	//وراه
+			contacts.insertBeforeFirst(c);		//assume in add
 		
-		if(checkAndSortC(c)) {
-			Contacts.insert(c);
+		if(checkAndSort(c)) {
+			contacts.insert(c);
 			return true;
 		}	
 		return false;
 	}
 	
-	//public boolean scheduleEvent(String name) {
-		
-	//}
+	public boolean scheduleEvent(String name, Event event) {
+		if(checkName(name)) {
+			return contacts.retrieve().addEvent(event);
+		}
+		return false;
+	}
+	
+	public void printContactEvents(String name) {
+		if(checkName(name)) {
+			contacts.retrieve().printAllEvents();
+			return;
+		}
+		System.out.println("No contact found!");
+		return;
+	}
 
+	
+	public void printFirstName(String n) {		//throws long name 
+		if(contacts.isEmpty()) {
+			System.out.println("No contacts!");
+			return;
+		}
+		contacts.findFirst();
+		if(contacts.retrieve().getName().substring(0, n.length()).equalsIgnoreCase(n))
+			System.out.println(contacts.toString());
+		while(!contacts.last()) {
+			contacts.findNext();
+			if(contacts.retrieve().getName().substring(0, n.length()).equalsIgnoreCase(n))
+				System.out.println(contacts.toString());
+		}
+	}
+	
 	public boolean searchByName(String n) {
-		if (Contacts.isEmpty())
+		if (contacts.isEmpty())
 			return false;
 
-		Contacts.findFirst();
+		contacts.findFirst();
 
-		if (Contacts.retrieve().getName().equalsIgnoreCase(n))	//assume not in add and check first one
+		if (contacts.retrieve().getName().equalsIgnoreCase(n))	//assume not in add and check first one
 			return true;
 
-		while (!Contacts.last()) {
-			Contacts.findNext();
-			if (Contacts.retrieve().getName().equalsIgnoreCase(n))
+		while (!contacts.last()) {
+			contacts.findNext();
+			if (contacts.retrieve().getName().equalsIgnoreCase(n))
 				return true;
 		}
 		return false;
 	}
 	
 	public boolean searchByEmail(String n) {
-		if (Contacts.isEmpty())
+		if (contacts.isEmpty())
 			return false;
 
-		Contacts.findFirst();
-		if (Contacts.retrieve().getEmail().equalsIgnoreCase(n))
+		contacts.findFirst();
+		if (contacts.retrieve().getEmail().equalsIgnoreCase(n))
 			return true;
 
-		while (!Contacts.last()) {
-			Contacts.findNext();
-			if (Contacts.retrieve().getEmail().equalsIgnoreCase(n))
+		while (!contacts.last()) {
+			contacts.findNext();
+			if (contacts.retrieve().getEmail().equalsIgnoreCase(n))
 				return true;
 		}
 		return false;
 	}
 
 	public boolean searchByNumber(int n) {
-		if (Contacts.isEmpty())
+		if (contacts.isEmpty())
 			return false;
 
-		Contacts.findFirst();
-		if (Contacts.retrieve().getphNumber() == n)
+		contacts.findFirst();
+		if (contacts.retrieve().getphNumber() == n)
 			return true;
 
-		while (!Contacts.last()) {
-			Contacts.findNext();
-			if (Contacts.retrieve().getphNumber() == n)
+		while (!contacts.last()) {
+			contacts.findNext();
+			if (contacts.retrieve().getphNumber() == n)
 				return true;
 		}
 		return false;
 	}
 	
 	public boolean searchByAddress(String n) {
-		if (Contacts.isEmpty())
+		if (contacts.isEmpty())
 			return false;
 
-		Contacts.findFirst();
-		if (Contacts.retrieve().getAddress().equalsIgnoreCase(n))
+		contacts.findFirst();
+		if (contacts.retrieve().getAddress().equalsIgnoreCase(n))
 			return true;
 
-		while (!Contacts.last()) {
-			Contacts.findNext();
-			if (Contacts.retrieve().getAddress().equalsIgnoreCase(n))
+		while (!contacts.last()) {
+			contacts.findNext();
+			if (contacts.retrieve().getAddress().equalsIgnoreCase(n))
 				return true;
 		}
 		return false;
 	}
 	
 	public boolean searchByBirthday(String n) {
-		if (Contacts.isEmpty())
+		if (contacts.isEmpty())
 			return false;
 
-		Contacts.findFirst();
-		if (Contacts.retrieve().getBirthday().equalsIgnoreCase(n))
+		contacts.findFirst();
+		if (contacts.retrieve().getBirthday().equalsIgnoreCase(n))
 			return true;
 
-		while (!Contacts.last()) {
-			Contacts.findNext();
-			if (Contacts.retrieve().getBirthday().equalsIgnoreCase(n))
+		while (!contacts.last()) {
+			contacts.findNext();
+			if (contacts.retrieve().getBirthday().equalsIgnoreCase(n))
 				return true;
 		}
 		return false;
 	}
 	
 	public boolean deleteByName(String c) {
-		if (Contacts.isEmpty())
+		if (contacts.isEmpty())
 			return false;
-		Contacts.findFirst();
-		if (Contacts.retrieve().getName().equalsIgnoreCase(c)) {
-			Contacts.remove();
+		contacts.findFirst();
+		if (contacts.retrieve().getName().equalsIgnoreCase(c)) {
+			contacts.remove();
 			return true;
 		}
-		while (!Contacts.last()) {
-			Contacts.findNext();
-			if (Contacts.retrieve().getName().equalsIgnoreCase(c)) {
-				Contacts.remove();
+		while (!contacts.last()) {
+			contacts.findNext();
+			if (contacts.retrieve().getName().equalsIgnoreCase(c)) {
+				contacts.remove();
 				return true;
 			}
 		}
@@ -184,21 +211,25 @@ public class Phonebook {
 	}
 
 	public boolean deleteByNumber(int c) {
-		if (Contacts.isEmpty())
+		if (contacts.isEmpty())
 			return false;
-		Contacts.findFirst();
-		if (Contacts.retrieve().getphNumber() == c) {
-			Contacts.remove();
+		contacts.findFirst();
+		if (contacts.retrieve().getphNumber() == c) {
+			contacts.remove();
 			return true;
 		}
-		while (!Contacts.last()) {
-			Contacts.findNext();
-			if (Contacts.retrieve().getphNumber() == c) {
-				Contacts.remove();
+		while (!contacts.last()) {
+			contacts.findNext();
+			if (contacts.retrieve().getphNumber() == c) {
+				contacts.remove();
 				return true;
 			}
 		}
 		return false;
+	}
+	
+	public void display() {
+		System.out.println(contacts.toString());
 	}
 	
 

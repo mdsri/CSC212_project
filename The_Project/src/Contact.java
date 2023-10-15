@@ -51,11 +51,6 @@ public class Contact implements Comparable<Contact> {
 	public boolean EqNum(Contact o) {
 		return this.phNumber == o.phNumber;
 	}
-
-	public String toString() {
-		return "Name:" + name + "\nPhone number: " + phNumber + "\nEmail Address: " + email + "\nAddress: " + address
-				+ "\nBirthday: " + birthday + "\nNotes: " + notes;
-	}
 	
 	public boolean checkAndSort(Event e) {	// T not found - F found
 		if (events.retrieve().noConflict(e))		//maybe last		it's ok same name
@@ -73,14 +68,18 @@ public class Contact implements Comparable<Contact> {
 	}
 
 	public boolean addEvent(Event e) {
-		if (events.isEmpty()) 
+		if (events.isEmpty()) { 
 			events.insert(e);
-		
+			return true;
+		}
+
 		events.findFirst();
-		if(events.retrieve().compareTo(e) > 0 && events.retrieve().noConflict(e))
+		if(events.retrieve().compareTo(e) > 0 && events.retrieve().noConflict(e)) {
 			events.insertBeforeFirst(e);		//before
+			return true;
+		}
 		
-		if(checkAndSort(e)) {
+		else if(checkAndSort(e)) {
 			events.insert(e);
 			return true;
 		}	
@@ -104,9 +103,9 @@ public class Contact implements Comparable<Contact> {
 		}
 	}
 
-	public void printAll() {
+	public void printAllEvents() {
 		if(events.isEmpty())
-			System.out.println("No Events");
+			System.out.println("Contact doesn't have an events!");
 		events.findFirst();
 		System.out.println("Contact name: "+ this.name
 							+"\n" + events.retrieve().toString());
@@ -128,5 +127,10 @@ public class Contact implements Comparable<Contact> {
 		}while(!events.last());
 	}
 	*/
-
+	
+	@Override
+	public String toString() {
+		return "Name:" + name + "\nPhone number: " + phNumber + "\nEmail Address: " + email + "\nAddress: " + address
+				+ "\nBirthday: " + birthday + "\nNotes: " + notes;
+	}
 }
