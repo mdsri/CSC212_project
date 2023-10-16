@@ -151,7 +151,7 @@ public class Phonebook {
 	
 	public boolean searchByBirthday(String n) {
 		//if (contacts.isEmpty())
-			//return false;
+		//return false;
 
 		contacts.findFirst();
 		if (contacts.retrieve().getBirthday().equalsIgnoreCase(n))
@@ -171,7 +171,8 @@ public class Phonebook {
 			deleteInAllEvents();
 			contacts.remove();
 		}
-		System.out.println("Contact not found");
+		else
+			System.out.println("Contact not found!");
 	}
 	
 	public void deleteByNumber(int number) {
@@ -180,7 +181,8 @@ public class Phonebook {
 			deleteInAllEvents();
 			contacts.remove();
 		}
-		System.out.println("Contact not found");
+		else
+			System.out.println("Contact not found!");
 	}
 	
 	public void displayForSearch() {
@@ -225,10 +227,10 @@ public class Phonebook {
 	public void printAllTheEvents() {
 		//if(!AllEvents.isEmpty()){
 			AllEvents.findFirst();
-			AllEvents.retrieve().toString();
+			System.out.println(AllEvents.retrieve().toString());
 			while(!AllEvents.last()) {
 				AllEvents.findNext();
-				AllEvents.retrieve().toString();
+				System.out.println(AllEvents.retrieve().toString());
 			}
 		//}
 		//else 
@@ -251,6 +253,8 @@ public class Phonebook {
 	//}
 	
 	public void deleteInAllEvents() {
+		if(AllEvents.isEmpty())
+			return;
 		AllEvents.findFirst();
 		if(contacts.retrieve().getTitleEvent().equalsIgnoreCase(AllEvents.retrieve().getTitle()))
 			AllEvents.remove();
