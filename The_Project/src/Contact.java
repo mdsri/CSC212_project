@@ -15,7 +15,7 @@ public class Contact implements Comparable<Contact> {
 		this.address = address;
 		this.birthday = birthday;
 		this.notes = notes;
-		events = null;
+		events = new LinkedList_ADT<Event>();
 	}
 	
 
@@ -42,6 +42,10 @@ public class Contact implements Comparable<Contact> {
 	public String getNotes() {
 		return notes;
 	}
+	
+	public String getTitleEvent() {
+		return events.retrieve().getTitle();
+	}
 
 	@Override
 	public int compareTo(Contact o) {		//without number
@@ -52,19 +56,30 @@ public class Contact implements Comparable<Contact> {
 		return this.phNumber == o.phNumber;
 	}
 	
+	public boolean noConflictEventAdd(Event e) {
+		events.findFirst();
+		if(!events.retrieve().noConflict(e)) {
+			return false;
+		}
+		else {
+			while(!events.last()) {
+				events.findNext();
+				if(!events.retrieve().noConflict(e))
+					return false;
+			}
+		}
+		return true;
+	}
+	
 	public boolean checkAndSort(Event e) {	// T not found - F found
-		if (events.retrieve().noConflict(e))		//maybe last		it's ok same name
-			return true;
-		while(events.retrieve().noConflict(e) && !events.last()){
+		while(!events.last()){
 			events.findNext();
-			/* if (events.retrieve().compareTo(e) == 0)	//comp1
-				return false; */
-			if(events.retrieve().compareTo(e) >= 0 && events.retrieve().noConflict(e)) {	//comp2
+			if(events.retrieve().compareTo(e) >= 0) {	
 				events.findPrevious();
 				return true;
 			}
 		}
-		return false;
+		return true;
 	}
 
 	public boolean addEvent(Event e) {
@@ -72,9 +87,13 @@ public class Contact implements Comparable<Contact> {
 			events.insert(e);
 			return true;
 		}
+		
+		if(!noConflictEventAdd(e)) {
+			return false;
+		}
 
 		events.findFirst();
-		if(events.retrieve().compareTo(e) > 0 && events.retrieve().noConflict(e)) {
+		if(events.retrieve().compareTo(e) >= 0) {
 			events.insertBeforeFirst(e);		//before
 			return true;
 		}
