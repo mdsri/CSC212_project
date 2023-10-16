@@ -103,88 +103,87 @@ public class Phonebook {
 				System.out.println(contacts.toString());
 		}
 	}
-	
-	public boolean searchByName(String n) {
+	// edit to return contact 
+	public Contact searchByName(String n) {
 		if (contacts.isEmpty())
-			return false;
-
+			return null;
+		
 		contacts.findFirst();
 
 		if (contacts.retrieve().getName().equalsIgnoreCase(n))	//assume not in add and check first one
-			return true;
+			return contacts.retrieve();
 
 		while (!contacts.last()) {
 			contacts.findNext();
 			if (contacts.retrieve().getName().equalsIgnoreCase(n))
-				return true;
+				return contacts.retrieve();
 		}
-		return false;
+		return null;
 	}
 	
-	public boolean searchByEmail(String n) {
+	public Contact searchByEmail(String n) {
 		if (contacts.isEmpty())
-			return false;
+			return null;
 
 		contacts.findFirst();
 		if (contacts.retrieve().getEmail().equalsIgnoreCase(n))
-			return true;
+			return contacts.retrieve();
 
 		while (!contacts.last()) {
 			contacts.findNext();
 			if (contacts.retrieve().getEmail().equalsIgnoreCase(n))
-				return true;
+				return contacts.retrieve();
 		}
-		return false;
+		return null;
 	}
 
-	public boolean searchByNumber(int n) {
+	public Contact searchByNumber(int n) {
 		if (contacts.isEmpty())
-			return false;
+			return null;
 
 		contacts.findFirst();
 		if (contacts.retrieve().getphNumber() == n)
-			return true;
+			return contacts.retrieve();
 
 		while (!contacts.last()) {
 			contacts.findNext();
 			if (contacts.retrieve().getphNumber() == n)
-				return true;
+				return contacts.retrieve();
 		}
-		return false;
+		return null;
 	}
 	
-	public boolean searchByAddress(String n) {
+	public Contact searchByAddress(String n) {
 		if (contacts.isEmpty())
-			return false;
+			return null;
 
 		contacts.findFirst();
 		if (contacts.retrieve().getAddress().equalsIgnoreCase(n))
-			return true;
+			return contacts.retrieve();
 
 		while (!contacts.last()) {
 			contacts.findNext();
 			if (contacts.retrieve().getAddress().equalsIgnoreCase(n))
-				return true;
+				return contacts.retrieve();
 		}
-		return false;
+		return null;
 	}
 	
-	public boolean searchByBirthday(String n) {
+	public Contact searchByBirthday(String n) {
 		if (contacts.isEmpty())
-			return false;
+			return null;
 
 		contacts.findFirst();
 		if (contacts.retrieve().getBirthday().equalsIgnoreCase(n))
-			return true;
+			return contacts.retrieve();
 
 		while (!contacts.last()) {
 			contacts.findNext();
 			if (contacts.retrieve().getBirthday().equalsIgnoreCase(n))
-				return true;
+				return contacts.retrieve();
 		}
-		return false;
+		return null;
 	}
-	
 	/*
 	 * public boolean deleteByName(String c) { if (contacts.isEmpty()) return false;
 	 * contacts.findFirst(); if (contacts.retrieve().getName().equalsIgnoreCase(c))
