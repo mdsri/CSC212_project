@@ -4,10 +4,14 @@ public class test {
 
 	public static void main(String[] args) {
 		
-		String A = "Mohammed", B = "Mohammed Ali";
+		String A = "Mohammed", B = "Mohammed";
 		Scanner input = new Scanner(System.in);
 			
-		System.out.println(B.substring(0, A.length()).equalsIgnoreCase(A));
+		if(A.length() >= B.length() && A.substring(0, B.length()).equalsIgnoreCase(B)) {
+			System.out.println("Work");
+		}
+		else
+			System.out.println("Didn't work");
 		
 		
 		//System.out.println(A.length());

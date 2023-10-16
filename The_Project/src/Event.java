@@ -7,7 +7,6 @@ public class Event implements Comparable<Event>{
 	private String location;
 
 	public Event(String title, String date, String time, String location) {
-		super();
 		this.title = title;
 		this.date = date;
 		this.time = time;
@@ -43,8 +42,8 @@ public class Event implements Comparable<Event>{
 	}
 
 	public boolean noConflict(Event o) {
-		if(date.substring(0, 2).equalsIgnoreCase(o.date.substring(0, 2)) 
-				&& time.substring(0, 2).equalsIgnoreCase(o.time.substring(0, 2)))
+		if(date.equalsIgnoreCase(o.date) 
+				&& time.equalsIgnoreCase(o.time))
 			return false;
 		return true;
 	}

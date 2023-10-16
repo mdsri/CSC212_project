@@ -15,6 +15,7 @@ public class Contact implements Comparable<Contact> {
 		this.address = address;
 		this.birthday = birthday;
 		this.notes = notes;
+		events = null;
 	}
 	
 
@@ -87,7 +88,7 @@ public class Contact implements Comparable<Contact> {
 	
 	public void printByTitle(String title) {
 		if(events.isEmpty())
-			System.out.println("No Events");
+			System.out.println("No events!");
 		events.findFirst();
 		if(events.retrieve().getTitle().equalsIgnoreCase(title)) {
 			System.out.println("Events found!"
@@ -100,6 +101,8 @@ public class Contact implements Comparable<Contact> {
 					System.out.println("\n" + events.retrieve().toString());
 			}
 		}
+		else 
+			System.out.println("No events!");
 	}
 
 	public void printAllEvents() {

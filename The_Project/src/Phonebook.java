@@ -49,20 +49,6 @@ public class Phonebook {
 		}
 		return true;
 	}
-	
-	public boolean checkName(String n) {	// T found - F not found
-		if(contacts.isEmpty())
-			return false;
-		contacts.findFirst();
-		if (contacts.retrieve().getName().equalsIgnoreCase(n))
-			return true;
-		while(contacts.last()) {
-			contacts.findFirst();
-			if (contacts.retrieve().getName().equalsIgnoreCase(n))
-				return true;
-		}
-		return false;
-	}
 
 	public boolean addContact(Contact c) {
 		if (contacts.isEmpty()) //comp2
@@ -79,34 +65,41 @@ public class Phonebook {
 		return false;
 	}
 	
-	public boolean scheduleEvent(String name, Event event) {
-		if(checkName(name)) {
-			return contacts.retrieve().addEvent(event);
-		}
-		return false;
+	public boolean scheduleEvent(Event event) {
+		return contacts.retrieve().addEvent(event);
 	}
 	
 	public void printContactEvents(String name) {
-		if(checkName(name)) {
+		if(searchByName(name)) {
 			contacts.retrieve().printAllEvents();
 			return;
 		}
 		System.out.println("No contact found!");
 		return;
 	}
+	
+	public void printEventTitle(String title) {
+		contacts.retrieve().printByTitle(title);
+	}
+	
+	public void printAllEventsCon() {
+		contacts.retrieve().printAllEvents();
+	}
 
 	
-	public void printFirstName(String n) {		//throws long name 
+	public void printFirstName(String n) {
 		if(contacts.isEmpty()) {
 			System.out.println("No contacts!");
 			return;
 		}
 		contacts.findFirst();
-		if(contacts.retrieve().getName().substring(0, n.length()).equalsIgnoreCase(n))
+		if(contacts.retrieve().getName().length() >= n.length() &&
+				contacts.retrieve().getName().substring(0, n.length()).equalsIgnoreCase(n))
 			System.out.println(contacts.toString());
 		while(!contacts.last()) {
 			contacts.findNext();
-			if(contacts.retrieve().getName().substring(0, n.length()).equalsIgnoreCase(n))
+			if(contacts.retrieve().getName().length() >= n.length() &&
+					contacts.retrieve().getName().substring(0, n.length()).equalsIgnoreCase(n))
 				System.out.println(contacts.toString());
 		}
 	}
@@ -192,41 +185,37 @@ public class Phonebook {
 		return false;
 	}
 	
-	public boolean deleteByName(String c) {
-		if (contacts.isEmpty())
-			return false;
-		contacts.findFirst();
-		if (contacts.retrieve().getName().equalsIgnoreCase(c)) {
-			contacts.remove();
-			return true;
-		}
-		while (!contacts.last()) {
-			contacts.findNext();
-			if (contacts.retrieve().getName().equalsIgnoreCase(c)) {
-				contacts.remove();
-				return true;
-			}
-		}
-		return false;
-	}
+	/*
+	 * public boolean deleteByName(String c) { if (contacts.isEmpty()) return false;
+	 * contacts.findFirst(); if (contacts.retrieve().getName().equalsIgnoreCase(c))
+	 * { contacts.remove(); return true; } while (!contacts.last()) {
+	 * contacts.findNext(); if (contacts.retrieve().getName().equalsIgnoreCase(c)) {
+	 * contacts.remove(); return true; } } return false; }
+	 */
 
-	public boolean deleteByNumber(int c) {
-		if (contacts.isEmpty())
-			return false;
-		contacts.findFirst();
-		if (contacts.retrieve().getphNumber() == c) {
+	public void deleteByName(String name) {
+		if(searchByName(name)) {
+			System.out.println("Contact deleted!");
 			contacts.remove();
-			return true;
 		}
-		while (!contacts.last()) {
-			contacts.findNext();
-			if (contacts.retrieve().getphNumber() == c) {
-				contacts.remove();
-				return true;
-			}
-		}
-		return false;
+		System.out.println("Contact not found");
 	}
+	
+	public void deleteByNumber(int number) {
+		if(searchByNumber(number)) {
+			System.out.println("Contact deleted!");
+			contacts.remove();
+		}
+		System.out.println("Contact not found");
+	}
+	
+	/*
+	 * public boolean deleteByNumber(int c) { if (contacts.isEmpty()) return false;
+	 * contacts.findFirst(); if (contacts.retrieve().getphNumber() == c) {
+	 * contacts.remove(); return true; } while (!contacts.last()) {
+	 * contacts.findNext(); if (contacts.retrieve().getphNumber() == c) {
+	 * contacts.remove(); return true; } } return false; }
+	 */
 	
 	public void displayForSearch() {
 		System.out.println("Contact found!\n" + contacts.toString());
