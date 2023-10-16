@@ -169,7 +169,7 @@ public class Main {
 					System.out.println("Goodbye!");
 					break;
 				default:
-					System.out.println("Invalid choice. Please select a valid option (1-8).");
+					System.out.println("Invalid choice. Please select a valid option (1-7).");
 				}
 			}catch(Exception e){System.out.println("Invalid choise, try again!!");}
 		} while (choice != 7);
