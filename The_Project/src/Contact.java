@@ -1,14 +1,13 @@
 public class Contact implements Comparable<Contact> {
-	// throws exception be carefull
 	private String name;
-	private int phNumber; // int easier for us compared to string
+	private String phNumber;
 	private String email;
 	private String address;
 	private String birthday;
 	private String notes;
 	private LinkedList_ADT<Event> events;
 	
-	public Contact(String name, int phNumber, String email, String address, String birthday, String notes) {
+	public Contact(String name, String phNumber, String email, String address, String birthday, String notes) {
 		this.name = name;
 		this.phNumber = phNumber;
 		this.email = email;
@@ -18,12 +17,11 @@ public class Contact implements Comparable<Contact> {
 		events = new LinkedList_ADT<Event>();
 	}
 	
-
 	public String getName() {
 		return name;
 	}
 
-	public int getphNumber() {
+	public String getphNumber() {
 		return phNumber;
 	}
 
@@ -53,7 +51,7 @@ public class Contact implements Comparable<Contact> {
 	}
 	
 	public boolean EqNum(Contact o) {
-		return this.phNumber == o.phNumber;
+		return this.phNumber.equalsIgnoreCase(o.phNumber);
 	}
 	
 	public boolean noConflictEventAdd(Event e) {
@@ -136,22 +134,9 @@ public class Contact implements Comparable<Contact> {
 		}
 	}
 	
-	/*
-	public void printByName(String n) {
-		if(events.isEmpty())
-			System.out.println("No Events");
-		events.findFirst();
-		System.out.println("Event found!"+"\nContact name: " + this.name);
-		do {
-			System.out.println("\n" + events.retrieve().toString());
-			events.findNext();
-		}while(!events.last());
-	}
-	*/
-	
 	@Override
 	public String toString() {
-		return "Name:" + name + "\nPhone number: " + phNumber + "\nEmail Address: " + email + "\nAddress: " + address
+		return "Name: " + name + "\nPhone number: " + phNumber + "\nEmail Address: " + email + "\nAddress: " + address
 				+ "\nBirthday: " + birthday + "\nNotes: " + notes;
 	}
 }
