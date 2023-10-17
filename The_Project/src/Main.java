@@ -176,7 +176,7 @@ public class Main {
 
 						if (list.searchByName(conName)) {
 							Event e = new Event(title, date, time, location, conName);
-							if (list.scheduleEvent(e))
+							if (list.scheduleEventToContact(e))
 								System.out.println("Event scheduled successfully!");
 							else
 								System.out.println("Conflict Event ");
@@ -186,7 +186,7 @@ public class Main {
 						System.out.println("Invalid date!");
 					break;
 				case 5:
-					if (list.isEmptyContact() || list.isEmptyAllEvents()) {
+					if (list.isEmptyContact() || list.isEmptyEventsList()) {
 						System.out.println("It's empty!");
 						break;
 					}
@@ -206,7 +206,7 @@ public class Main {
 						System.out.println("Enter the event title: ");
 						input.nextLine();
 						String eventTitle = input.nextLine();
-						list.printAllEventsTitle(eventTitle);
+						list.printEventsListTitle(eventTitle);
 						break;
 					default:
 						System.out.println("Envalid choice");
@@ -222,11 +222,11 @@ public class Main {
 					list.printFirstName(firstName);
 					break;
 				case 7:
-					if (list.isEmptyContact() || list.isEmptyAllEvents()) {
+					if (list.isEmptyContact() || list.isEmptyEventsList()) {
 						System.out.println("It's empty!");
 						break;
 					}
-					list.printAllTheEvents();
+					list.printEventsListAll();
 					break;
 				case 8:
 					System.out.println("Goodbye!");
