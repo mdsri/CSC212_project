@@ -8,7 +8,7 @@ public class Phonebook {
 		AllEvents = new LinkedList_ADT<Event>();
 	}
 
-	public boolean checkAndSort(Contact c) { // T not found - F found
+	public boolean checkAndSort(Contact c) {
 		if (contacts.retrieve().compareTo(c) == 0 || contacts.retrieve().EqNum(c))
 			return false;
 		while (!contacts.last()) {
@@ -233,24 +233,28 @@ public class Phonebook {
 
 	public void printAllEventsTitle(String title) {
 		AllEvents.findFirst();
-		if (AllEvents.retrieve().getTitle().equalsIgnoreCase(title))
-			AllEvents.retrieve().toString();
-		while (!AllEvents.last()) {
-			AllEvents.findNext();
-			if (AllEvents.retrieve().getTitle().equalsIgnoreCase(title))
-				AllEvents.retrieve().toString();
+		if (AllEvents.retrieve().getTitle().equalsIgnoreCase(title)) {
+			System.out.println(AllEvents.retrieve().toString());
+			while (!AllEvents.last()) {
+				AllEvents.findNext();
+				if (AllEvents.retrieve().getTitle().equalsIgnoreCase(title))
+					System.out.println(AllEvents.retrieve().toString());
+			}
 		}
+		else
+			System.out.println("event not found!");
 	}
-
+	
 	public void deleteInAllEvents() {
-		if (AllEvents.isEmpty())
+		if(AllEvents.isEmpty())
 			return;
 		AllEvents.findFirst();
-		if (contacts.retrieve().getTitleEvent().equalsIgnoreCase(AllEvents.retrieve().getTitle()))
+		if(AllEvents.retrieve().getContactName().equalsIgnoreCase(contacts.retrieve().getName()))
 			AllEvents.remove();
-		while (!AllEvents.last())
-			if (contacts.retrieve().getTitleEvent().equalsIgnoreCase(AllEvents.retrieve().getTitle()))
+		while(!AllEvents.isEmpty()) {
+			if(AllEvents.retrieve().getContactName().equalsIgnoreCase(contacts.retrieve().getName()))
 				AllEvents.remove();
+		}
 	}
 
 	public boolean isEmptyAllEvents() {
