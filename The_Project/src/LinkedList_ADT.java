@@ -84,5 +84,4 @@ public class LinkedList_ADT<T> {
 		else
 			current = current.next;
 	}
-
 }
