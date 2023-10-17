@@ -1,16 +1,17 @@
-// Not completed //
-public class Event implements Comparable<Event>{
+public class Event implements Comparable<Event> {
 
 	private String title;
 	private String date;
 	private String time; // 24H
 	private String location;
+	private String contactName;
 
-	public Event(String title, String date, String time, String location) {
+	public Event(String title, String date, String time, String location, String contaceName) {
 		this.title = title;
 		this.date = date;
 		this.time = time;
 		this.location = location;
+		this.contactName = contaceName;
 	}
 
 	public String getTitle() {
@@ -29,8 +30,15 @@ public class Event implements Comparable<Event>{
 		return location;
 	}
 
+	public String getContactName() {
+		return contactName;
+	}
 
-	@Override // don't forget to connect contact and no conflict
+	public void setContactName(String contactName) {
+		this.contactName = contactName;
+	}
+
+	@Override 
 	public String toString() {
 		return "Event title: " + title + "\nEvent date and time (DD/MM/YYYY - HH:MM): " + date + " - " + time
 				+ "\nEvent location: " + location;
@@ -42,8 +50,7 @@ public class Event implements Comparable<Event>{
 	}
 
 	public boolean noConflict(Event o) {
-		if(date.equalsIgnoreCase(o.date) 
-				&& time.equalsIgnoreCase(o.time))
+		if (date.equalsIgnoreCase(o.date) && time.equalsIgnoreCase(o.time))
 			return false;
 		return true;
 	}
