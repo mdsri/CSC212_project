@@ -68,7 +68,7 @@ public class Contact implements Comparable<Contact> {
 		return true;
 	}
 
-	public boolean checkAndSort(Event e) { 
+	public boolean sortEvent(Event e) { 
 		while (!events.last()) {
 			events.findNext();
 			if (events.retrieve().compareTo(e) >= 0) {
@@ -95,7 +95,7 @@ public class Contact implements Comparable<Contact> {
 			return true;
 		}
 
-		else if (checkAndSort(e)) {
+		else if (sortEvent(e)) {
 			events.insert(e);
 			return true;
 		}
@@ -118,7 +118,7 @@ public class Contact implements Comparable<Contact> {
 			System.out.println("No events!");
 	}
 
-	public void printAllEvents() {
+	public void printEvents() {
 		if (events.isEmpty())
 			System.out.println("Contact doesn't have an events!");
 		events.findFirst();
