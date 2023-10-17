@@ -29,10 +29,10 @@ public class Main {
 					System.out.print("Enter the contact's name: ");
 					input.nextLine();
 					String name = input.nextLine();///////////////////////////////////////////////////////
-					System.out.print("Enter the contact's Number: ");	//international number
+					System.out.print("Enter the contact's Number: "); // international number
 					String phNumber = input.next();
 
-					if(phNumber.matches("\\d{10}")) {
+					if (phNumber.matches("\\d{10}")) {
 						System.out.print("Enter the contact's Email: ");
 						String email = input.next();
 						System.out.print("Enter the contact's Address: ");
@@ -41,44 +41,38 @@ public class Main {
 						System.out.print("Enter the contact's Birthday (YYYY/MM/DD): ");
 						String birthday = input.next();
 
-						if(list.checkIsDate(birthday)) {
+						if (list.checkIsDate(birthday)) {
 							System.out.print("Enter the contact's notes: ");
 							input.nextLine();
 							String notes = input.nextLine();//////////////////////////////////////////////////////
 
-							///////////////////////////////////////////////////////////////input.nextLine();
+							/////////////////////////////////////////////////////////////// input.nextLine();
 
 							Contact a = new Contact(name, phNumber, email, address, birthday, notes);
-							if(list.addContact(a)) {
+							if (list.addContact(a)) {
 								System.out.println("Contact added successfully!");
 								break;
-							}
-							else
+							} else
 								System.out.println("Contact already added!");
 						}
-					}
-					else
+					} else
 						System.out.println("Invalid number!");
 					break;
 				case 2:
-					if(list.isEmptyContact()) {
+					if (list.isEmptyContact()) {
 						System.out.println("Contact is empty!");
 						break;
 					}
-					System.out.print("Enter the search criteria: "
-							+ "\n1. Name"
-							+ "\n2. Phone Number"
-							+ "\n3. Email Address"
-							+ "\n4. Address"
-							+ "\n5. Birthday");
+					System.out.print("Enter the search criteria: " + "\n1. Name" + "\n2. Phone Number"
+							+ "\n3. Email Address" + "\n4. Address" + "\n5. Birthday");
 					System.out.print("\nEnter your choice:");
 					int choice2 = input.nextInt();
-					switch(choice2) {
+					switch (choice2) {
 					case 1:
 						System.out.print("Enter the contact's name: ");
 						input.nextLine();
 						String searchName = input.nextLine();///////////////////////////////////////////////////////////
-						if(list.searchByName(searchName))
+						if (list.searchByName(searchName))
 							list.displayForSearch();
 						else
 							System.out.println("Contact not found!");
@@ -86,19 +80,18 @@ public class Main {
 					case 2:
 						System.out.print("Enter the contact's Phone Number: ");
 						String searchphNumber = input.next();
-						if(searchphNumber.matches("\\d{10}")) {
-							if(list.searchByNumber(searchphNumber)) 
+						if (searchphNumber.matches("\\d{10}")) {
+							if (list.searchByNumber(searchphNumber))
 								list.displayForSearch();
 							else
 								System.out.println("Contact not found!");
-						}
-						else
+						} else
 							System.out.println("Invalid number");
 						break;
 					case 3:
 						System.out.print("Enter the contact's Email: ");
-						String searchEmail= input.next();
-						if(list.searchByEmail(searchEmail))
+						String searchEmail = input.next();
+						if (list.searchByEmail(searchEmail))
 							list.displayForSearch();
 						else
 							System.out.println("Contact not found!");
@@ -106,23 +99,22 @@ public class Main {
 					case 4:
 						System.out.print("Enter the contact's Address: ");
 						input.nextLine();
-						String searchAddress= input.nextLine();////////////////////////////////////////////////////////
-						////////////////////////////////////////////////////////////////////////////input.nextLine();
-						if(list.searchByAddress(searchAddress))
+						String searchAddress = input.nextLine();////////////////////////////////////////////////////////
+						//////////////////////////////////////////////////////////////////////////// input.nextLine();
+						if (list.searchByAddress(searchAddress))
 							list.displayForSearch();
 						else
 							System.out.println("Contact not found!");
 						break;
 					case 5:
 						System.out.print("Enter the contact's Birthday: ");
-						String searchBirthday= input.next();
-						if(list.checkIsDate(searchBirthday)) {
-							if(list.searchByBirthday(searchBirthday))
+						String searchBirthday = input.next();
+						if (list.checkIsDate(searchBirthday)) {
+							if (list.searchByBirthday(searchBirthday))
 								list.displayForSearch();
 							else
 								System.out.println("Contact not found!");
-						}
-						else
+						} else
 							System.out.println("Invalid birthday");
 						break;
 					default:
@@ -131,7 +123,7 @@ public class Main {
 					}
 					break;
 				case 3:
-					if(list.isEmptyContact()) {
+					if (list.isEmptyContact()) {
 						System.out.println("Contact is empty!");
 						break;
 					}
@@ -140,18 +132,18 @@ public class Main {
 					System.out.println("2. Delete by phone number");
 					System.out.print("Enter your choice: ");
 					int choice3 = input.nextInt();
-					switch(choice3) {
+					switch (choice3) {
 					case 1:
 						System.out.print("Write the contact name you want to delete: ");
 						input.nextLine();
 						String nameDelete = input.nextLine();////////////////////////////////////////////
-						//////////////////////////////////////////////////////////////////input.nextLine();
+						////////////////////////////////////////////////////////////////// input.nextLine();
 						list.deleteByName(nameDelete);
 						break;
 					case 2:
 						System.out.println("Write the contact phone number you want to delete: ");
 						String deleteNumber = input.next();
-						if(deleteNumber.matches("\\d{10}"))
+						if (deleteNumber.matches("\\d{10}"))
 							list.deleteByNumber(deleteNumber);
 						else
 							System.out.println("Invalid number!");
@@ -162,40 +154,37 @@ public class Main {
 					}
 					break;
 				case 4:
-					if(list.isEmptyContact()) {
+					if (list.isEmptyContact()) {
 						System.out.println("Contact is empty!");
 						break;
 					}
 					System.out.print("Enter event title: ");
 					input.nextLine();
 					String title = input.nextLine();//////////////////////////////////////////////////////
-					//////////////////////////////////////////////////////////////input.nextLine();
+					////////////////////////////////////////////////////////////// input.nextLine();
 					System.out.print("Enter contact name: ");
 					String conName = input.nextLine();
 					System.out.print("Enter event date and time (YYYY/MM/DD HH:MM): ");
 					String date = input.next();
 					String time = input.next();
-					if(list.checkIsDate(date)) {
+					if (list.checkIsDate(date) && list.checkIsTime(time)) {
 						System.out.print("Enter event location: ");
 						input.nextLine();
 						String location = input.nextLine();//////////////////////////////////////////////////////////////
-						///////////////////////////////////////////////////////////////input.nextLine();
+						/////////////////////////////////////////////////////////////// input.nextLine();
 
-						if(list.searchByName(conName)) {
-							Event e = new Event( title,  date,  time,  location);
-							if(list.scheduleEvent(e))
+						if (list.searchByName(conName)) {
+							Event e = new Event(title, date, time, location);
+							if (list.scheduleEvent(e))
 								System.out.println("Event scheduled successfully!");
 							else
 								System.out.println("Conflict Event ");
-						}
-						else
+						} else
 							System.out.println("Contact not found!");
 					}
-					else
-						System.out.println("Invalid date!");
 					break;
 				case 5:
-					if(list.isEmptyContact() || list.isEmptyAllEvents()) {
+					if (list.isEmptyContact() || list.isEmptyAllEvents()) {
 						System.out.println("It's empty!");
 						break;
 					}
@@ -204,7 +193,7 @@ public class Main {
 					System.out.println("2. event title");
 					System.out.println("Enter your choice: ");
 					int choiceEvent = input.nextInt();
-					switch(choiceEvent) {
+					switch (choiceEvent) {
 					case 1:
 						System.out.println("Enter contact name: ");
 						input.nextLine();
@@ -222,7 +211,7 @@ public class Main {
 					}
 					break;
 				case 6:
-					if(list.isEmptyContact()) {
+					if (list.isEmptyContact()) {
 						System.out.println("Contact is empty!");
 						break;
 					}
@@ -231,7 +220,7 @@ public class Main {
 					list.printFirstName(firstName);
 					break;
 				case 7:
-					if(list.isEmptyContact() || list.isEmptyAllEvents()) {
+					if (list.isEmptyContact() || list.isEmptyAllEvents()) {
 						System.out.println("It's empty!");
 						break;
 					}
@@ -245,7 +234,9 @@ public class Main {
 				}
 
 			} while (choice != 8);
-		}catch(Exception e){System.out.println("Invalid enter, try again!!");}
+		} catch (Exception e) {
+			System.out.println("Invalid enter, try again!!");
+		}
 		input.close();
 	}
 }
