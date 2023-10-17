@@ -10,13 +10,13 @@ public class Phonebook {
 	
 	
 	public boolean checkAndSort(Contact c) {	// T not found - F found
-		if (contacts.retrieve().compareTo(c) == 0 || contacts.retrieve().EqNum(c))		//قدامه الحين
+		if (contacts.retrieve().compareTo(c) == 0 || contacts.retrieve().EqNum(c))
 			return false;
 		while(!contacts.last()){
 			contacts.findNext();
-			if (contacts.retrieve().compareTo(c) == 0 || contacts.retrieve().EqNum(c))	//comp1
+			if (contacts.retrieve().compareTo(c) == 0 || contacts.retrieve().EqNum(c))
 				return false;
-			else if(contacts.retrieve().compareTo(c) > 0 && !(contacts.retrieve().EqNum(c))) {	//comp2
+			else if(contacts.retrieve().compareTo(c) > 0 && !(contacts.retrieve().EqNum(c))) {
 				contacts.findPrevious();
 				return true;
 			}
@@ -56,22 +56,7 @@ public class Phonebook {
 		return;
 	}
 	
-	/*
-	   public void printEventTitle(String title) {
-		contacts.retrieve().printByTitle(title);
-	}
-	*/
-	
-	/*public void printAllEventsCon() {
-		contacts.retrieve().printAllEvents();
-	}
-	 */
-	
 	public void printFirstName(String n) {
-		//if(contacts.isEmpty()) {
-			//System.out.println("No contacts!");
-			//return;
-		//}
 		contacts.findFirst();
 		if(contacts.retrieve().getName().length() >= n.length() &&
 				contacts.retrieve().getName().substring(0, n.length()).equalsIgnoreCase(n))
@@ -85,12 +70,9 @@ public class Phonebook {
 	}
 	
 	public boolean searchByName(String n) {
-		//if (contacts.isEmpty())
-			//return false;
-
 		contacts.findFirst();
 
-		if (contacts.retrieve().getName().equalsIgnoreCase(n))	//assume not in add and check first one
+		if (contacts.retrieve().getName().equalsIgnoreCase(n))	
 			return true;
 
 		while (!contacts.last()) {
@@ -102,9 +84,6 @@ public class Phonebook {
 	}
 	
 	public boolean searchByEmail(String n) {
-		//if (contacts.isEmpty())
-			//return false;
-
 		contacts.findFirst();
 		if (contacts.retrieve().getEmail().equalsIgnoreCase(n))
 			return true;
@@ -117,26 +96,20 @@ public class Phonebook {
 		return false;
 	}
 
-	public boolean searchByNumber(int n) {
-		//if (contacts.isEmpty())
-			//return false;
-
+	public boolean searchByNumber(String n) {
 		contacts.findFirst();
-		if (contacts.retrieve().getphNumber() == n)
+		if (contacts.retrieve().getphNumber().equalsIgnoreCase(n))
 			return true;
 
 		while (!contacts.last()) {
 			contacts.findNext();
-			if (contacts.retrieve().getphNumber() == n)
+			if (contacts.retrieve().getphNumber().equalsIgnoreCase(n))
 				return true;
 		}
 		return false;
 	}
 	
 	public boolean searchByAddress(String n) {
-		//if (contacts.isEmpty())
-			//return false;
-
 		contacts.findFirst();
 		if (contacts.retrieve().getAddress().equalsIgnoreCase(n))
 			return true;
@@ -150,9 +123,6 @@ public class Phonebook {
 	}
 	
 	public boolean searchByBirthday(String n) {
-		//if (contacts.isEmpty())
-		//return false;
-
 		contacts.findFirst();
 		if (contacts.retrieve().getBirthday().equalsIgnoreCase(n))
 			return true;
@@ -175,7 +145,7 @@ public class Phonebook {
 			System.out.println("Contact not found!");
 	}
 	
-	public void deleteByNumber(int number) {
+	public void deleteByNumber(String number) {
 		if(searchByNumber(number)) {
 			System.out.println("Contact deleted!");
 			deleteInAllEvents();
@@ -192,6 +162,24 @@ public class Phonebook {
 	public boolean isEmptyContact() {
 		return contacts.isEmpty();
 	}
+	
+	public boolean checkIsDate(String date) {
+		try {
+			if(date.charAt(4) == '/' && date.charAt(7) == '/' && Integer.parseInt(date.substring(0, 4)) > 0 
+					&& Integer.parseInt(date.substring(5, 7)) > 0  && Integer.parseInt(date.substring(8, 10)) > 0 )
+				return true;
+			else {
+				System.out.println("Incorrect Date");
+				return false;
+			}
+		}
+		catch(Exception e) {
+			System.out.println("Incorrect date");
+			return false;
+		}
+	}
+	
+	
 	//////////////////////////////////////////////////////////////	All Events
 	
 	public boolean checkAndSortAllEvents(Event e) {	// T not found - F found
@@ -225,20 +213,15 @@ public class Phonebook {
 	}
 	
 	public void printAllTheEvents() {
-		//if(!AllEvents.isEmpty()){
 			AllEvents.findFirst();
 			System.out.println(AllEvents.retrieve().toString());
 			while(!AllEvents.last()) {
 				AllEvents.findNext();
 				System.out.println(AllEvents.retrieve().toString());
 			}
-		//}
-		//else 
-			//System.out.println("No Events!");
 	}
 	
 	public void printAllEventsTitle(String title) {
-		//if(!AllEvents.isEmpty()){
 			AllEvents.findFirst();
 			if(AllEvents.retrieve().getTitle().equalsIgnoreCase(title))
 				AllEvents.retrieve().toString();
@@ -248,10 +231,6 @@ public class Phonebook {
 					AllEvents.retrieve().toString();
 			}
 		}
-		//else 
-			//System.out.println("No Events!");
-	//}
-	
 	public void deleteInAllEvents() {
 		if(AllEvents.isEmpty())
 			return;
