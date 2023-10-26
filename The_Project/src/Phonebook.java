@@ -174,7 +174,7 @@ public class Phonebook {
 			return false;
 		}
 	}
-	
+
 	public boolean checkIsTime(String time) {
 		try {
 			if (time.charAt(2) == ':' && Integer.parseInt(time.substring(0, 2)) >= 0
@@ -189,8 +189,8 @@ public class Phonebook {
 			return false;
 		}
 	}
-	
-	//All Events methods
+
+	// All Events methods
 
 	public boolean SortEventsList(Event e) {
 		while (!eventsList.last()) {
@@ -240,24 +240,24 @@ public class Phonebook {
 				if (eventsList.retrieve().getTitle().equalsIgnoreCase(title))
 					System.out.println(eventsList.retrieve().toString());
 			}
-		}
-		else
+		} else
 			System.out.println("event not found!");
 	}
-	
+
 	public void deleteInEventsList() {
-		if(eventsList.isEmpty())
+		if (eventsList.isEmpty())
 			return;
 		eventsList.findFirst();
-		if(eventsList.retrieve().getContactName().equalsIgnoreCase(contacts.retrieve().getName()))
+		if (eventsList.retrieve().getContactName().equalsIgnoreCase(contacts.retrieve().getName()))
 			eventsList.remove();
-		if(!eventsList.isEmpty() && eventsList.last()) {
+		if (!eventsList.isEmpty() && eventsList.last()
+				&& eventsList.retrieve().getContactName().equalsIgnoreCase(contacts.retrieve().getName())) {
 			eventsList.remove();
 			return;
 		}
-		while(!eventsList.last()){
+			while (!eventsList.isEmpty() && !eventsList.last()) {
 			eventsList.findNext();
-			if(eventsList.retrieve().getContactName().equalsIgnoreCase(contacts.retrieve().getName()))
+			if (eventsList.retrieve().getContactName().equalsIgnoreCase(contacts.retrieve().getName()))
 				eventsList.remove();
 		}
 	}
