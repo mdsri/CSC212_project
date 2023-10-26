@@ -38,7 +38,7 @@ public class Event implements Comparable<Event> {
 		this.contactName = contactName;
 	}
 
-	@Override 
+	@Override
 	public String toString() {
 		return "Event title: " + title + "\nEvent date and time (DD/MM/YYYY - HH:MM): " + date + " - " + time
 				+ "\nEvent location: " + location;
