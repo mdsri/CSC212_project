@@ -8,6 +8,8 @@ public class Main {
 		Phonebook list = new Phonebook();
 
 		int choice = 0;
+		int choice2 = 0;
+		int choice3 = 0;
 		try {
 			do {
 				System.out.println("Welcome to the Phonebook App!");
@@ -22,13 +24,12 @@ public class Main {
 				System.out.println("8. Exit");
 				System.out.print("Enter your choice: ");
 
-				try { 
+				try {
 					choice = input.nextInt();
-				}
-				catch (java.util.InputMismatchException e) {
+				} catch (java.util.InputMismatchException e) {
 					System.out.println("Invalid input. Please enter a valid integer choice (1-8).");
 					choice = 0;
-					input.next(); 
+					input.next();
 				}
 
 				switch (choice) {
@@ -36,7 +37,7 @@ public class Main {
 					System.out.print("Enter the contact's name: ");
 					input.nextLine();
 					String name = input.nextLine();
-					System.out.print("Enter the contact's Number: "); 
+					System.out.print("Enter the contact's Number: ");
 					String phNumber = input.next();
 
 					if (phNumber.matches("\\d{10}")) {
@@ -71,7 +72,13 @@ public class Main {
 					System.out.print("Enter the search criteria: " + "\n1. Name" + "\n2. Phone Number"
 							+ "\n3. Email Address" + "\n4. Address" + "\n5. Birthday");
 					System.out.print("\nEnter your choice:");
-					int choice2 = input.nextInt();
+					try {
+						choice2 = input.nextInt();
+					} catch (java.util.InputMismatchException e) {
+						System.out.println("Invalid input. Please enter a valid integer choice (1-2).");
+						choice2 = 0;
+						input.next();
+					}
 					switch (choice2) {
 					case 1:
 						System.out.print("Enter the contact's name: ");
@@ -135,7 +142,13 @@ public class Main {
 					System.out.println("1. Delete by name");
 					System.out.println("2. Delete by phone number");
 					System.out.print("Enter your choice: ");
-					int choice3 = input.nextInt();
+					try {
+						choice3 = input.nextInt();
+					} catch (java.util.InputMismatchException e) {
+						System.out.println("Invalid input. Please enter a valid integer choice (1-2).");
+						choice3 = 0;
+						input.next();
+					}
 					switch (choice3) {
 					case 1:
 						System.out.print("Write the contact name you want to delete: ");
