@@ -233,17 +233,21 @@ public class Phonebook {
 
 	public void printEventsListTitle(String title) {
 		eventsList.findFirst();
+		boolean findIt = false;
 		if (eventsList.retrieve().getTitle().equalsIgnoreCase(title)) {
 			System.out.println(eventsList.retrieve().toString());
-			while (!eventsList.last()) {
-				eventsList.findNext();
-				if (eventsList.retrieve().getTitle().equalsIgnoreCase(title))
-					System.out.println(eventsList.retrieve().toString());
+			findIt = true;
+		}
+		while (!eventsList.last()) {
+			eventsList.findNext();
+			if (eventsList.retrieve().getTitle().equalsIgnoreCase(title)) {
+				System.out.println(eventsList.retrieve().toString());
+				findIt = true;
 			}
-		} else
+		}
+		if(!findIt)
 			System.out.println("event not found!");
 	}
-
 	public void deleteInEventsList() {
 		if (eventsList.isEmpty())
 			return;
