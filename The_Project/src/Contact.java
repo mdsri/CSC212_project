@@ -68,7 +68,7 @@ public class Contact implements Comparable<Contact> {
 		return true;
 	}
 
-	public boolean sortEvent(Event e) { 
+	public boolean sortEvent(Event e) {
 		while (!events.last()) {
 			events.findNext();
 			if (events.retrieve().compareTo(e) >= 0) {
@@ -91,7 +91,7 @@ public class Contact implements Comparable<Contact> {
 
 		events.findFirst();
 		if (events.retrieve().compareTo(e) >= 0) {
-			events.insertBeforeFirst(e); 
+			events.insertBeforeFirst(e);
 			return true;
 		}
 
@@ -128,7 +128,7 @@ public class Contact implements Comparable<Contact> {
 			System.out.println("\n" + events.retrieve().toString());
 		}
 	}
-	
+
 	@Override
 	public String toString() {
 		return "Name: " + name + "\nPhone number: " + phNumber + "\nEmail Address: " + email + "\nAddress: " + address
